@@ -1,0 +1,16 @@
+{% extends 'layout.html' %} {% block body %}
+<div class="container">
+    <div class="centerstage">
+        {% for post in object_list %}
+
+        <h3><a href="{% url 'Myapp:post_detail_blog' pk=post.pk %}">{{ post.title }}- <small>{{post.author.first_name}} {{post.author.last_name}}</small></a></h3>
+        <p>{{post.snippet}}</p>
+
+        <div class="date">
+            <small><p>Published on: {{ post.published_date|date:"D M Y"}}</p></small>
+        </div>
+        <a href="{% url 'Myapp:post_detail_blog' pk=post.pk %}">Comments: {{ post.approve_comments.count }}</a> <br/>
+        <hr>{% endfor %}
+    </div>
+</div>
+{% endblock %}

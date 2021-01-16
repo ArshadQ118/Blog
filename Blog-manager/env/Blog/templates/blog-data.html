@@ -1,0 +1,123 @@
+{% extends 'layout.html' %} {% block body %}
+
+<style>
+    .techfont {
+        font-family: 'Russo One', sans-serif;
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+    
+    .postdate {
+        text-align: center;
+    }
+    
+    .posttitle {
+        font-family: 'Russo One', sans-serif;
+        font-size: 3em;
+        text-align: center;
+    }
+    
+    .postcontent {
+        font-family: 'Montserrat';
+        font-size: 1.5em;
+    }
+    
+    .centerstage {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .btn-comment {
+        position: absolute;
+        right: 0px;
+    }
+    
+    .bigbrand {
+        font-size: 1.5em;
+    }
+    
+    .loader {
+        filter: hue-rotate(0deg);
+        color: linear-gradient(45deg, #0f8, #08f);
+        animation: hue 5000ms infinite linear;
+    }
+    
+    @keyframes spinify {
+        0% {
+            transform: translate(0px, 0px);
+        }
+        33% {
+            transform: translate(0px, 24px);
+            border-radius: 100%;
+            width: 10px;
+            height: 10px;
+        }
+        66% {
+            transform: translate(0px, -16px);
+        }
+        88% {
+            transform: translate(0px, 4px);
+        }
+        100% {
+            transform: translate(0px, 0px);
+        }
+    }
+    
+    @keyframes hue {
+        0% {
+            filter: hue-rotate(0deg);
+        }
+        100% {
+            filter: hue-rotate(360deg);
+        }
+    }
+</style>
+
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="blog_posts">
+                <h1 class='posttitle loader'>{{ posting.title }}</h1>
+
+                {% if posting.published_date %}
+                <div class="date postdate">
+                    <small>Id-{{posting.author.id}}</small> {{posting.author.first_name}} {{posting.author.last_name}}-{{ posting.published_date }}
+                </div>
+
+                {% else %}
+                <a class="btn btn-outline-dark" href="{% url 'Myapp:publish_post' pk=posting.pk %}">Publish</a> {% endif %}
+
+                <p class='postcontent'>{{ posting.text|safe|linebreaksbr }}</p>
+
+
+                {% if user.is_authenticated %} {% if user.id == posting.author.id %}
+
+                <a class="btn btn-primary" href="{% url 'Myapp:post_edit'  pk=posting.pk %}"><span class="fa fa-pencil"></span></a>
+                <a class="btn btn-primary" href="{% url 'Myapp:post_remove' pk=posting.pk %}"><span class="fa fa-remove"></span></a> {% endif %} {% endif %}
+
+
+
+                <hr>
+                <a class="btn btn-primary btn-comment" href="{% url 'Myapp:add-comment' pk=posting.pk %}">Add comment</a>
+                <div class="container">
+
+
+                    {% for comment in posting.comments.all %}
+                    <br> {% if user.is_authenticated or comment.approved_comment %} {{ comment.created_date }} {% if not comment.approved_comment %} {% if user.is_authenticated %} {% if user.id == posting.author.id %}
+                    <a class="btn btn-primary" href="{% url 'Myapp:comment_remove' pk=comment.pk %}"><span class="fa fa-remove"></span></a>
+                    <a class="btn btn-primary" href="{% url 'Myapp:comment_approve' pk=comment.pk %}"><span class="fa fa-check"></span></a> {% endif %} {% endif %} {% endif %}
+
+                    <p>{{ comment.text|safe|linebreaks }}</p>
+                    <p>Posted by: <strong>{{ comment.author }}</strong></p>
+
+                    {% endif %} {% empty %}
+                    <p>No comments posted.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

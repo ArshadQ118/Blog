@@ -1,0 +1,58 @@
+<!doctype html>
+{% extends 'layout.html' %}
+{% block title %} Register{% endblock title %}
+
+<style>
+form{
+    margin-left: 200px;
+    margin-right: 200px;
+}
+</style>
+
+{% block body %}
+    <div class="alert alert-primary" role="alert">
+            <h1 style="text-align: center;">Registration Form </h1>
+        </div>
+        <div class="container">
+            <form method="POST" >
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_username">User Name</label>
+                    <input type="text" class="form-control" name="username"
+                        maxlength="150" autocomplete="off" autofocus required id="id_username">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">First_Name</label>
+                    <input type="text" class="form-control" name="first_name"
+                        maxlength="100"  autocomplete="off" required id="id_first_name">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Last_Name</label>
+                    <input type="text" autocomplete="off" class="form-control" name="last_name"
+                        maxlength="100" required id="id_last_name">
+                    <small style="color: grey">Last Name</small>
+                </div>
+                <div class="form-group">
+                    <label for="id_email">Email address</label>
+                    <input type="email" class="form-control"
+                        aria-describedby="emailHelp" name="email"
+                        maxlength="150" autocomplete="off" required id="id_email">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" name="password1"
+                        autocomplete="new-password" required id="id_password1">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">ReEnter_Password</label>
+                    <input type="password" class="form-control"
+                        name="password2" autocomplete="new-password" required
+                        id="id_password2">
+                </div>
+                <!-- <a class="btn btn-outline-primary" href="login">Register</a> -->
+                <button id="btn" class="btn btn-outline-primary" type="submit">Register</button>
+            </form>
+{% endblock body %}
+        </div>
+    </body>
+</html>

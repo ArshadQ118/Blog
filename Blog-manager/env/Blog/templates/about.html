@@ -1,0 +1,147 @@
+<!doctype html> {% extends 'layout.html' %} {% block title %} About {% endblock title %} {% block body %}
+<link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+<title>Carousel Template for Bootstrap</title>
+
+<link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/carousel/">
+
+<!-- Bootstrap core CSS -->
+<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="carousel.css" rel="stylesheet">
+<main role="main"></main>
+<div class="container-fluid my-4 px-0">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner px-0">
+            <div class="carousel-item active">
+                <img src="https://source.unsplash.com/3000x1100/?coding" class="d-block w-100" alt="...">
+                <div class="container">
+                    <div class="carousel-caption text-left">
+                        <h1>Welcome to Blog Manager</h1>
+                        <p>Welcome User , Thank You You are Visiting Our About Page here You can See Our Team Members</p>
+                        <p><a class="btn btn-lg btn-primary" href="{% url 'Myapp:register' %}" role="button">Sign up today</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://source.unsplash.com/3000x1100/?developer" class="d-block
+          w-100" alt="img">
+            </div>
+            <div class="carousel-item">
+                <img src="https://source.unsplash.com/3000x1100/?sun" class="d-block
+          w-100" alt="...">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+<div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+        <div class="col-lg-4">
+            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+            <h2>Kishor Kumar</h2>
+            <p><strong>Full Stack Developer</strong> Working as A Full-Stack React developer at Blog-manager Pvt Ltd</p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <img class="rounded-circle" src="https://scontent.fluh1-1.fna.fbcdn.net/v/t1.0-9/127264451_3622609801187950_2321436330271763014_o.jpg?_nc_cat=102&ccb=2&_nc_sid=0debeb&_nc_ohc=MYiDsrc523YAX9sthn6&_nc_ht=scontent.fluh1-1.fna&oh=4d4f59b8234836df663c7daa1b01ff7f&oe=5FEB537A"
+                alt="Generic placeholder image" width="140" height="140">
+            <h2>Mohd Arshad</h2>
+            <p><strong>Full Stack Developer</strong> Working as A Full-Stack Python developer at Blog-manager Pvt Ltd </p>
+
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+            <h2>Abhishek Singh</h2>
+            <p><strong>Full Stack Developer</strong> Working as A Full-Stack React developer at Blog-manager Pvt Ltd</p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <!-- /.col-lg-4 -->
+    </div>
+    <!-- /.row -->
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">Aligns with your <span class="text-muted">purpose</span></h2>
+            <p class="lead">Your organization has a purpose. Is your blog manager aligned to that purpose?<br> Your blog manager must be someone whose skills and interests align with your organization’s goals and aspirations. They must be interested in what you do and
+                appreciate what you’re trying to achieve as a business, so they can help you get there faster.<br> If you clue your blog manager into the greater cause you are trying to pursue, they can actively advise you on how the blog can contribute
+                to that journey. Every blog post will anchor to that purpose, and progress it.<br> To sum it up, your blog manager needs to be aware and appreciate where you are heading as a business
+            </p>
+        </div>
+        <div class="col-md-5">
+            <img class="featurette-image img-fluid mx-auto" src="https://www.cloudanalogy.com/wp-content/uploads/elementor/thumbs/who-we-are-new-graphics-min-og7qcmw3q6ygvvms69x7ufyw8j7ruht4z83bm4fdvk.png" alt="Generic placeholder image">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">Our Business Journey: <span class="text-muted">From Vision To Reality</span></h2>
+            <p class="lead">Blog-manager is a successful, independent, and certified Salesforce development company and Salesforce Silver Consulting Partner that provides a wide range of Salesforce products, services, and solutions to clients across the world through
+                our offices in the United Kingdom, India, Australia, and the United States. Our teams of experienced and certified Salesforce professionals work hard every day to make the Salesforce ecosystem a better place to get empowered. To sum it
+                up, your blog manager needs to be aware and appreciate where you are heading as a business helps its clients delight their customers with the most compelling and smart user experience possible.
+                <br/><strong>Shape the Future of Customer Experience with To sum it up, your blog manager needs to be aware and appreciate where you are heading as a business NOW!</strong>.</p>
+        </div>
+        <div class="col-md-5 order-md-1">
+            <img class="featurette-image img-fluid mx-auto" src="https://www.cloudanalogy.com/wp-content/uploads/2019/11/history.png" alt="Generic placeholder image">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">Hear from our People: <span class="text-muted">Employee Testimonial</span></h2>
+            <p class="lead">Blog-manager ’s success is directly attributed to the <strong>hard work and dedication</strong> of its resourceful, creative, and enthusiastic team members. <br/> Cloud Analogy values honest feedback from its employees. Hear right from our
+                experts and get invaluable insights into what it’s like to work at and with Blog-manager .</p>
+        </div>
+        <div class="col-md-5">
+            <img class="featurette-image img-fluid mx-auto" src="https://www.cloudanalogy.com/wp-content/uploads/2019/11/graphics-11-min.png" alt="Generic placeholder image">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+</div>
+<!-- /.container -->
+
+
+<!-- FOOTER -->
+<footer class="container">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p>&copy; 2020-2024 Blog Manager Pvt Ltd, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+</footer>
+</main>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>
+    window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+</script>
+<script src="../../assets/js/vendor/popper.min.js"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+<script src="../../assets/js/vendor/holder.min.js"></script>
+{% endblock body %}

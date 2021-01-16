@@ -1,0 +1,33 @@
+{% extends 'layout.html' %} 
+{% block body %} 
+
+    {% if user.is_authenticated %} 
+        {% if user.id == posting.author.id %}
+            <div id="abc" class="container">
+                <div class="content container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="blog_posts">
+                                <h1>Update Post....</h1>
+                                <br>
+
+                                <form method="POST" class="post-form">
+                                    {% csrf_token %} {{form.as_p}}
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </form>
+
+                                <script>
+                                    var editor = new MediumEditor('.editable');
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <h1>You're Not allowed to Here</h1>
+        {% endif %}
+    {% else %}
+         <h1>You're Not allowed to Here</h1>
+{% endif %} 
+{% endblock %}

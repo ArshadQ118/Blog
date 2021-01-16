@@ -1,0 +1,42 @@
+
+
+
+<!doctype html>
+{% extends 'layout.html' %}
+{% block title %} Login{% endblock title %}
+
+<style>
+form{
+    margin-left: 200px;
+    margin-right: 200px;
+}
+</style>
+{% block body %}
+
+<div class="container my-4">
+    <div class="jumbotron">
+        <h1>Log In!</h1>
+        <p>Enter your Username and password!</p>
+
+        <form action="{% url 'Myapp:login' %}" method="post" class="form-group">
+            {% csrf_token %}
+            {# A more "HTML" way of creating the login form#}
+            <label for="username">Username:</label>
+            <input type="text" name="username" autocomplete="off"
+                placeholder="Username"
+                class="form-control">
+
+            <label for="password"></label>
+            <input type="password" name="password" class="form-control">
+            <div class="checkbox">
+                <label for="usercheck">
+                    <input type="checkbox" name="usercheck" value="">
+                    Keep Me Logged In</label>
+            </div>
+            <input type="submit" name="" value="Login">
+
+        </form>
+
+    </div>
+</div>
+{% endblock body %}
