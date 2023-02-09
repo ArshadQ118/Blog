@@ -147,7 +147,7 @@ class PostHomeView(ListView):
 
 @login_required
 def AdsHomeView(request):
-    access_token = "EAAKHCrZBV3WMBAAWWwBtIsX3YlVVI6LjCNsRnmUNfojoBx5m5GCunSM2xyGoGSdtbWtJihHhZBPwnoFVSg6ANfJqzNrYrjepWPIFYGnrDBnMfeR8ExE9oaT1z7grXDHxZCVzZCMmZAS6mfmvEzXrPaVQpJE0BlRwmtLhmukCXdJF8e9mowlVOtAIZC6FmqSG81b0k3w1bC5AZDZD"
+    access_token = ""
     ad_reached_countries = ['US', 'IN']
     search_item = "fitness"
     BASE_URL = "https://graph.facebook.com/v16.0"
