@@ -4,35 +4,27 @@ from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from datetime import datetime
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls.base import reverse
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from Myapp.models import Contact  # , register
 from django.contrib import messages
 from django.contrib.auth.models import User
-# from django.contrib.auth.forms import UserModelForm
-from django.db import connections
-import mysql.connector
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from .tokens import account_activation_token
 from django.template.loader import render_to_string
 from .forms import SignUpForm
-from django.db import IntegrityError
-from operator import itemgetter
 from django.contrib.auth import logout, login, authenticate
-from django.contrib.auth.forms import UserCreationForm, forms
 from django.contrib.auth.decorators import login_required
-from django.views.generic import TemplateView
 from django.core.mail import EmailMessage
-import smtplib
-from django.core.mail import send_mail
 from .forms import PostForm, CommentForm
-from django.views.generic import (TemplateView, ListView,
+from django.views.generic import (ListView,
                                   DetailView, CreateView,
                                   UpdateView, DeleteView)
 from django.utils import timezone
 from django.core.mail import send_mail
-from Myapp.models import Posting, Comment
+from Myapp.models import Posting, Comment, FBAds
 from django.urls import reverse_lazy
+import os, requests
 
 
 # Create your views here.
@@ -49,7 +41,7 @@ def activation_sent(request):
 
 def activate(request, uidb64, token):
     try:
-        uid = force_text(urlsafe_base64_decode(uidb64))
+        uid = force_str(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
@@ -150,10 +142,33 @@ class PostHomeView(ListView):
     model = Posting
     template_name= 'post_list.html'
     ordering = ['-published_date']
-    
-    # def get_queryset(self):
-    #     return Posting.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    
+
+
+
+@login_required
+def AdsHomeView(request):
+    access_token = "EAAKHCrZBV3WMBAAWWwBtIsX3YlVVI6LjCNsRnmUNfojoBx5m5GCunSM2xyGoGSdtbWtJihHhZBPwnoFVSg6ANfJqzNrYrjepWPIFYGnrDBnMfeR8ExE9oaT1z7grXDHxZCVzZCMmZAS6mfmvEzXrPaVQpJE0BlRwmtLhmukCXdJF8e9mowlVOtAIZC6FmqSG81b0k3w1bC5AZDZD"
+    ad_reached_countries = ['US', 'IN']
+    search_item = "fitness"
+    BASE_URL = "https://graph.facebook.com/v16.0"
+    url = f"{BASE_URL}/ads_archive?ad_reached_countries={ad_reached_countries}&search_terms={search_item}" \
+          f"&fields=id,page_id,page_name,publisher_platforms,languages,ad_snapshot_url," \
+          f"ad_delivery_start_time,ad_creative_bodies,bylines&access_token={access_token}"
+    response = requests.get(url)
+    result = response.json()
+    content = " "
+    platform = " "
+    if response.status_code == 200:
+        data = [{"ads_id": item["id"], "page_id": item['page_id'], "page_name": item['page_name'],
+                 "post_link": item['ad_snapshot_url'], "content": content.join(item['ad_creative_bodies']) if
+            'ad_creative_bodies' in item else '', "publish_platform": platform.join(item['publisher_platforms']),
+            "languages": item['languages'] if "languages" in item else "", "page_link": f"https://www.facebook.com/{item['page_id']}"}
+                for item in result['data']]
+        return render(request, 'ads_list.html', {"object_list": data})
+    else:
+        return render(request, 'ads_list.html', {})
+
+
 class PostDetailView(DetailView):
     model = Posting
     template_name = 'blog-data.html'
@@ -224,4 +239,5 @@ def comment_remove(request, pk):
     post_pk = comment.post.pk
     comment.delete()
     return redirect('Myapp:post_detail_blog', pk=post_pk)
+
     

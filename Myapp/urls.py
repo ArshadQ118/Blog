@@ -1,12 +1,7 @@
-from django.contrib import admin
-from django.contrib.auth import login, logout
 from django.urls import path
-from django.conf.urls import url
-from django.urls.conf import re_path
 from Myapp import views
-from django.http import HttpResponseRedirect
-from django.views.generic import View
-from .views import activation_sent, activate, PostHomeView, PostDetailView, CreatePostView, PostUpdateView, DraftListView, PostDeleteView
+from .views import activation_sent, PostHomeView, PostDetailView, CreatePostView, PostUpdateView,\
+    DraftListView, PostDeleteView, AdsHomeView
 app_name = 'Myapp'
 urlpatterns = [
 
@@ -21,6 +16,7 @@ urlpatterns = [
     path('sent/', activation_sent, name="activation_sent"),
     path('activate/<slug:uidb64>/<slug:token>/', views.activate, name='activate'),
     path('blog/', PostHomeView.as_view(), name='post_list_blog'),
+    path('ads/', views.AdsHomeView, name='fb_ads'),
     path('blog/<int:pk>', PostDetailView.as_view(), name='post_detail_blog'),
     path('post/new/', CreatePostView.as_view(), name='post_new_blog'),
     path('post/<int:pk>/edit/', PostUpdateView.as_view(), name='post_edit'),

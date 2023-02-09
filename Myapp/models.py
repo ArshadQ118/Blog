@@ -86,3 +86,13 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
+
+class FBAds(models.Model):
+    ads_id = models.CharField(max_length=50, unique=True, null=False)
+
+    def get_absolute_url(self):
+        return reverse("Myapp:fb_ads")
+
+    def __str__(self):
+        return self.ads_id

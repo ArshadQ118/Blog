@@ -1,0 +1,24 @@
+{% extends 'layout.html' %} {% block body %}
+<div class="content container">
+    <div class="row mt-3">
+    {% for ads in object_list %}
+        <div class="card my-3 mx-3" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"><b>{{ ads.page_name}}</b></h5>
+            <p>Id:{{ ads.ads_id}}</p>
+            <p>pageId:{{ ads.page_id}}</p>
+            <h6 class="card-subtitle mb-2 text-muted">{{ ads.languages}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{{ ads.publish_platform}}</h6>
+            <p class="card-text">{% if ads.content %}
+                            {{ ads.content|truncatewords:3 }}
+                        {% else %}
+                            ---
+                        {% endif %}</p>
+            <a href="{{ ads.post_link }}" class="card-link">Post link</a>
+            <a href="{{ ads.page_link}}" class="card-link">Page link</a>
+          </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

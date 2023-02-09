@@ -8,3 +8,5 @@ Myapp/__pycache__
 db.sqlite3
 venv
 env
+Myapp/migrations/
+static
